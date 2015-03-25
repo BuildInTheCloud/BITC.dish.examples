@@ -7,6 +7,7 @@
     var wwo_api_url = 'http://api.worldweatheronline.com/free/v2/weather.ashx';
     var usr_location = {};
     var timeCheckId;
+    var polymer_instance;
 
 
     /* Polymer starts right here*/
@@ -19,7 +20,46 @@
          * @type string
          * @default 'regular'
          */
-        size: 'quadro',
+        sizes: {
+            half: 'inherit',
+            regular: 'none',
+            double: 'none',
+            triple: 'none',
+            quadro: 'none'
+        },
+
+        classes: {
+            half: 'weather-active',
+            regular: '',
+            double: '',
+            triple: '',
+            quadro: ''
+        },
+
+        displayView: function(element){
+            var fade_in_animation = new CoreAnimation();
+            fade_in_animation.duration = 500;
+            fade_in_animation.keyframes = [
+                {opacity: 0},
+                {opacity: 1}
+            ];
+
+            var fade_out_animation = new CoreAnimation();
+            fade_out_animation.duration = 500;
+            fade_out_animation.keyframes = [
+                {opacity: 1},
+                {opacity: 0}
+            ];
+
+            //Get the element currently visible...
+            fade_out_animation.target = $('.weather-active')[0];
+            if(fade_out_animation.target !== null && fade_out_animation.target !== undefined){
+                fade_out_animation.play();
+            }
+
+            fade_in_animation.target = element;
+            fade_in_animation.play();
+        },
 
         getCityAndState : function(usr_location){
             var city, state;
@@ -63,7 +103,7 @@
 
         getUserLocation: function(lat, long){
             //reverse-geocode for readable info using googlemaps API
-            var polymer = this;
+            var polymer = polymer_instance;
 
             var geocoder = new google.maps.Geocoder();
             var latlng = new google.maps.LatLng(lat, long);
@@ -105,7 +145,7 @@
         },
 
         getWeatherFromService: function(position){
-            var polymer = this;
+            var polymer = polymer_instance;
             var lat =  position.coords.latitude;
             var long = position.coords.longitude;
 
@@ -123,43 +163,70 @@
          * rearranges dish tile layout based on window resize
          */
         rearrangeElements: function(){
-            var polymer = this;
+            var polymer = polymer_instance;
             var width = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
             var height = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
+            var element;
+
+            polymer.sizes.half = 'none';
+            polymer.sizes.regular = 'none';
+            polymer.sizes.double = 'none';
+            polymer.sizes.triple = 'none';
+            polymer.sizes.quadro = 'none';
+
+            polymer.classes.half = '';
+            polymer.classes.regular = '';
+            polymer.classes.double = '';
+            polymer.classes.triple = '';
+            polymer.classes.quadro = '';
 
             //half size (icon)
-            if(width <= 55){
-                polymer.size = 'half';
+            if(width <= 168){
+                polymer.sizes.half = 'inherit';
+                polymer.classes.half = 'weather-active';
+                element = $('#weather_view_half')[0];
             }
 
-            if(width > 55 && width <= 168){
-                polymer.size = 'regular';
+            if(width > 168 && width <= 350){
+                polymer.sizes.regular = 'inherit';
+                polymer.classes.regular = 'weather-active';
+                element = $('#weather_view_regular')[0];
             }
 
-            if(width > 168 && width <= 300){
-                polymer.size = 'double';
+            if(width > 350 && width <= 1000){
+                polymer.sizes.double = 'inherit';
+                polymer.classes.double = 'weather-active';
+                element = $('#weather_view_double')[0];
             }
 
-            if(width > 300 && width <= 768 ){
-                polymer.size = 'triple';
+            /*if(width > 600 && width <= 1000 ){
+             polymer.sizes.triple = 'inherit';
+             polymer.classes.triple = 'weather-active';
+             element = $('#weather_view_triple')[0];
+             }*/
+
+            if(width > 1000){
+                polymer.sizes.quadro = 'inherit';
+                polymer.classes.quadro = 'weather-active';
+                element = $('#weather_view_quadro')[0];
             }
 
-            if(width > 768){
-                polymer.size = 'quadro';
-            }
+            polymer.displayView(element);
         },
 
         ready: function(){
             var polymer = this; /* instance of polymer */
+            polymer_instance = polymer; //set a polymer instance globally so we can access it later
             window.resizeStop.bind(polymer.rearrangeElements);
             polymer.startWeatherProcess();
             //set interval for time check/update
             clearInterval(timeCheckId);
             timeCheckId = setInterval(polymer.updateTime, 1000);
+            polymer.rearrangeElements();
         },
 
         receiveWeather: function(http){
-            var polymer = this;
+            var polymer = polymer_instance;
             if(http.readyState == 4 && http.status == 200){
                 //var weather_info = JSON.parse(http.responseText);
                 var weather_info = JSON.parse(http.responseText);
@@ -182,7 +249,7 @@
         },
 
         startWeatherProcess: function(){
-            var polymer = this;
+            var polymer = polymer_instance;
             if(navigator.geolocation){
                 navigator.geolocation.getCurrentPosition(function(position){
                     var data = polymer.getWeather(position);
@@ -207,7 +274,7 @@
              * Using World Weather Online API.
              *
              */
-            var polymer = this;
+            var polymer = polymer_instance;
             if(data === null){
                 return;
             }
@@ -230,6 +297,9 @@
                 polymer.state = cityAndState.state;
                 polymer.icon_single = '';
                 polymer.forecast = [];
+                polymer.humidity = weather.data.current_condition[0].humidity;
+                polymer.pressure = weather.data.current_condition[0].pressure;
+                polymer.uvIndex = weather.data.weather[0].uvIndex;
 
                 var getDay = function(date){
                     switch((new Date(date)).getDay()){
@@ -302,7 +372,7 @@
         },
 
         updateTime: function(){
-            var polymer = this;
+            var polymer = polymer_instance;
             polymer.currTime = new Date().toString('hh:mm tt');
         }
     });

@@ -29,6 +29,7 @@
 
     <link rel="import" href="../../components/core-animated-pages/core-animated-pages.html">
     <link rel="import" href="../../components/core-animated-pages/transitions/slide-from-right.html">
+    <link rel="import" href="../../components/core-animation/core-animation.html">
 
     <link rel="import" href="../../components/core-icons/core-icons.html">
     <link rel="import" href="../../components/core-icons/av-icons.html">
@@ -57,6 +58,10 @@
                 font-family: 'Open Sans', sans-serif;
                 width:100%;
                 margin-top:-20vh;
+            }
+
+            .weather-value-max{
+                font-size:35vh;
             }
 
             .weather-value{
@@ -91,8 +96,23 @@
                 text-shadow:0 2px 1px #7e7e7e;
             }
 
+            .weather-icon-double{
+                margin-top:4.5vh;
+                font-size:15vh;
+                text-shadow:0 2px 1px #7e7e7e;
+            }
+
             .weather-icon.forecast{
                 font-size:5vh;
+            }
+
+            .weather-container-double{
+                font-size:10vh;
+                margin-top:10vh;
+            }
+
+            .weather-container-double i{
+                text-shadow:0 2px 1px #7e7e7e;
             }
 
             .forecast-day{
@@ -104,6 +124,13 @@
                 top:3px;
                 right:5%;
                 font-size:3.5vh !important;
+            }
+
+            .forecast-time-double{
+                position:absolute;
+                top:3px;
+                right:5%;
+                font-size:7vh !important;
             }
 
             .nam-weather-logo{
@@ -122,41 +149,57 @@
             }
         </style>
 
-        <template if="{{size == 'half'}}">
-            <style>
+        <div id="weather_view_half" style="display:{{sizes.half}}" class="{{classes.half}}">
+            <div fit layout center vertical>
+                <h1 class="weather-value-max">{{temperature.F}}&deg;{{unit}}</h1>
+            </div>
+        </div>
 
-            </style>
+        <div id="weather_view_regular" style="display:{{sizes.regular}}" class="{{classes.regular}}">
             <div fit layout center vertical>
                 <h1 class="weather-value">{{temperature.F}}&deg;{{unit}}</h1>
                 <i class="{{icon_single}} weather-icon-single"></i>
                 <h3 class="weather-location">{{city}}, {{state}}</h3>
             </div>
-        </template>
+        </div>
 
-        <template if="{{size == 'regular'}}">
+        <div id="weather_view_double" style="display:{{sizes.double}}" class="{{classes.double}}">
             <div fit layout center vertical>
-                <h1 class="weather-value">{{temperature.F}}&deg;{{unit}}</h1>
-                <i class="{{icon_single}} weather-icon-single"></i>
-                <h3 class="weather-location">{{city}}, {{state}}</h3>
+                <div class="forecast-time-double"><h5>{{currTime}}</h5></div>
+                <div layout horizontal justified style="margin-top:25vh; margin-left:-5vh;">
+                    <i class="{{icon_single}} weather-icon-double"></i>
+                    <h3 class="weather-location">{{city}}, {{state}}</h3>
+                </div>
+                <div layout horizontal justified style="width:80%;">
+                    <div layout vertical center class="weather-container-double">
+                        <i class="weather-icon-temperature"></i>
+                        <h6>{{temperature.F}}&deg;{{unit}}</h6>
+                    </div>
+                    <div layout vertical center class="weather-container-double">
+                        <i class="weather-icon-fog"></i>
+                        <h6>{{pressure}}&nbsp;mb</h6>
+                    </div>
+                    <div layout vertical center class="weather-container-double">
+                        <i class="weather-icon-sun"></i>
+                        <h6>{{humidity}}&nbsp;%</h6>
+                    </div>
+                    <div layout vertical center class="weather-container-double">
+                        <i class="weather-icon-sun-inv"></i>
+                        <h6>{{uvIndex}}&nbsp;UVI</h6>
+                    </div>
+                </div>
             </div>
-        </template>
+        </div>
 
-        <template if="{{size == 'double'}}">
-        </template>
+        <!--<div id="weather_view_triple" style="display:{{sizes.triple}}" class="{{classes.triple}}">
+            <h1 class="weather-value">Triple</h1>
+        </div>-->
 
-        <template if="{{size == 'triple'}}">
-            <div fit layout center vertical>
-                <h1 class="weather-value">{{temperature.F}}&deg;{{unit}}</h1>
-                <i class="{{icon_single}} weather-icon-single"></i>
-                <h3 class="weather-location">{{city}}, {{state}}</h3>
-            </div>
-        </template>
-
-        <template if="{{size == 'quadro'}}">
+        <div id="weather_view_quadro" style="display:{{sizes.quadro}}" class="{{classes.quadro}}">
             <div class="nam-weather-logo"><h5>NAM-weather</h5></div>
             <div class="forecast-time"><h5>{{currTime}}</h5></div>
             <div layout horizontal center-justified>
-                <h3 class="weather-location">{{city}}, {{state}}</h3>
+                <h3 class="weather-location">Alpharetta, GA</h3>
             </div>
             <div layout horizontal center-justified><h5 class="weather-sub-title">5-Day Weather Forecast</h5></div>
             <div layout horizontal center-justified>
@@ -169,7 +212,7 @@
                     </div>
                 </template>
             </div>
-        </template>
+        </div>
     </template>
     <script src="nam-weather.js"></script>
 </polymer-element>
