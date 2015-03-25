@@ -1,0 +1,175 @@
+<!-- =====================================================================================================
+    Name:          nam-weather-display
+    Author:        @michaelonubogu
+    Description:   Displays weather information for nam-weather dish app
+    ====================================================================================================-->
+
+<style>
+    @font-face {
+        font-family: 'fontello';
+        src: url('meteocons/font/fontello.eot?18056628');
+        src: url('meteocons/font/fontello.eot?18056628#iefix') format('embedded-opentype'),
+        url('meteocons/font/fontello.woff?18056628') format('woff'),
+        url('meteocons/font/fontello.ttf?18056628') format('truetype'),
+        url('meteocons/font/fontello.svg?18056628#fontello') format('svg');
+        font-weight: normal;
+        font-style: normal;
+    }
+</style>
+
+<polymer-element name="nam-weather-display">
+
+    <!-- Polymer Core Components -->
+    <link rel="import" href="../../components/core-drawer-panel/core-drawer-panel.html">
+    <link rel="import" href="../../components/core-menu/core-menu.html">
+    <link rel="import" href="../../components/core-item/core-item.html">
+    <link rel="import" href="../../components/core-header-panel/core-header-panel.html">
+    <link rel="import" href="../../components/core-toolbar/core-toolbar.html">
+    <link rel="import" href="../../components/core-icon-button/core-icon-button.html">
+
+    <link rel="import" href="../../components/core-animated-pages/core-animated-pages.html">
+    <link rel="import" href="../../components/core-animated-pages/transitions/slide-from-right.html">
+
+    <link rel="import" href="../../components/core-icons/core-icons.html">
+    <link rel="import" href="../../components/core-icons/av-icons.html">
+    <link rel="import" href="../../components/core-icons/communication-icons.html">
+    <link rel="import" href="../../components/core-icons/device-icons.html">
+    <link rel="import" href="../../components/core-icons/editor-icons.html">
+    <link rel="import" href="../../components/core-icons/hardware-icons.html">
+    <link rel="import" href="../../components/core-icons/image-icons.html">
+    <link rel="import" href="../../components/core-icons/maps-icons.html">
+    <link rel="import" href="../../components/core-icons/notification-icons.html">
+    <link rel="import" href="../../components/core-icons/social-icons.html">
+
+    <!-- Polymer Paper Components -->
+    <link rel="import" href="../../components/paper-ripple/paper-ripple.html">
+    <link rel="import" href="../../components/paper-item/paper-item.html">
+    <link rel="import" href="../../components/paper-tabs/paper-tabs.html">
+
+    <!-- specific imports -->
+    <link rel="import" href="../open-sans.html">
+
+    <template>
+        <!-- icon fonts. Please do not move -->
+        <link rel="stylesheet" href="meteocons/css/fontello.css">
+        <style>
+            :host{
+                font-family: 'Open Sans', sans-serif;
+                width:100%;
+                margin-top:-20vh;
+            }
+
+            .weather-value{
+                font-size: 20vh;
+            }
+
+            .weather-value-forecast{
+                font-size: 5vh;
+            }
+
+            .weather-value-forecast.low{
+                font-size: 5vh;
+                margin-top:-2vh;
+            }
+
+            .weather-sub-title{
+                font-size: 4vh;
+                margin-top: -3vh;
+            }
+
+            .weather-location{
+                font-size: 10vh;
+            }
+
+            .weather-icon{
+                text-shadow:0 2px 1px #7e7e7e;
+            }
+
+            .weather-icon-single{
+                margin-top:-12vh;
+                font-size:30vh;
+                text-shadow:0 2px 1px #7e7e7e;
+            }
+
+            .weather-icon.forecast{
+                font-size:5vh;
+            }
+
+            .forecast-day{
+                margin:0 5% 0 5%;
+            }
+
+            .forecast-time{
+                position:absolute;
+                top:3px;
+                right:5%;
+                font-size:3.5vh !important;
+            }
+
+            .nam-weather-logo{
+                top: -3px;
+                left: 5%;
+                font-size:4vh !important;
+            }
+
+            h1, h2, h3, h4, h5, h6 {
+                color: #ffffff;
+                text-shadow:0 2px 1px #7e7e7e;
+            }
+
+            i{
+                color: #ffffff;
+            }
+        </style>
+
+        <template if="{{size == 'half'}}">
+            <style>
+
+            </style>
+            <div fit layout center vertical>
+                <h1 class="weather-value">{{temperature.F}}&deg;{{unit}}</h1>
+                <i class="{{icon_single}} weather-icon-single"></i>
+                <h3 class="weather-location">{{city}}, {{state}}</h3>
+            </div>
+        </template>
+
+        <template if="{{size == 'regular'}}">
+            <div fit layout center vertical>
+                <h1 class="weather-value">{{temperature.F}}&deg;{{unit}}</h1>
+                <i class="{{icon_single}} weather-icon-single"></i>
+                <h3 class="weather-location">{{city}}, {{state}}</h3>
+            </div>
+        </template>
+
+        <template if="{{size == 'double'}}">
+        </template>
+
+        <template if="{{size == 'triple'}}">
+            <div fit layout center vertical>
+                <h1 class="weather-value">{{temperature.F}}&deg;{{unit}}</h1>
+                <i class="{{icon_single}} weather-icon-single"></i>
+                <h3 class="weather-location">{{city}}, {{state}}</h3>
+            </div>
+        </template>
+
+        <template if="{{size == 'quadro'}}">
+            <div class="nam-weather-logo"><h5>NAM-weather</h5></div>
+            <div class="forecast-time"><h5>{{currTime}}</h5></div>
+            <div layout horizontal center-justified>
+                <h3 class="weather-location">Alpharetta, GA</h3>
+            </div>
+            <div layout horizontal center-justified><h5 class="weather-sub-title">5-Day Weather Forecast</h5></div>
+            <div layout horizontal center-justified>
+                <template repeat="{{day in forecast}}">
+                    <div layout vertical center class="forecast-day">
+                        <h1 class="weather-value-forecast">{{day.day}}</h1>
+                        <i class="{{day.weather_icon}} weather-icon forecast"></i>
+                        <h1 class="weather-value-forecast">{{day.weather_condition.maxtempF}}&deg;F</h1>
+                        <h1 class="weather-value-forecast low">{{day.weather_condition.mintempF}}&deg;F</h1>
+                    </div>
+                </template>
+            </div>
+        </template>
+    </template>
+    <script src="nam-weather.js"></script>
+</polymer-element>
