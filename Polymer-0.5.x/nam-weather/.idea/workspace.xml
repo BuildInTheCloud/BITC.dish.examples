@@ -34,10 +34,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="nam-weather-display.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="nam-weather-display.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/nam-weather/imports/nam-weather-display/nam-weather-display.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.81776416" vertical-offset="2407" max-vertical-offset="3060">
+            <state vertical-scroll-proportion="-112.73077" vertical-offset="10" max-vertical-offset="3060">
               <caret line="173" column="42" selection-start-line="173" selection-start-column="42" selection-end-line="173" selection-end-column="42" />
               <folding />
             </state>
@@ -57,7 +57,7 @@
       <file leaf-file-name="wwo_weather_codes.json" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/nam-weather/imports/nam-weather-display/wwo_weather_codes.json">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="306" max-vertical-offset="901">
+            <state vertical-scroll-proportion="-2.2307692" vertical-offset="248" max-vertical-offset="901">
               <caret line="18" column="54" selection-start-line="18" selection-start-column="47" selection-end-line="18" selection-end-column="54" />
               <folding />
             </state>
@@ -67,17 +67,17 @@
       <file leaf-file-name="google_api.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/nam-weather/imports/google_api.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="102">
+            <state vertical-scroll-proportion="-0.0" vertical-offset="0" max-vertical-offset="102">
               <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="130" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="nam-weather.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="nam-weather.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/nam-weather/imports/nam-weather-display/nam-weather.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="1989" max-vertical-offset="5355">
+            <state vertical-scroll-proportion="0.90132546" vertical-offset="1989" max-vertical-offset="5355">
               <caret line="153" column="62" selection-start-line="153" selection-start-column="62" selection-end-line="153" selection-end-column="62" />
               <folding />
             </state>
@@ -451,10 +451,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/nam-weather/imports/nam-weather-display/wwo_weather_codes.json">
+    <entry file="file://$PROJECT_DIR$/nam-weather/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="306" max-vertical-offset="901">
-          <caret line="18" column="54" selection-start-line="18" selection-start-column="47" selection-end-line="18" selection-end-column="54" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="561" max-vertical-offset="1054">
+          <caret line="33" column="25" selection-start-line="33" selection-start-column="25" selection-end-line="33" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/nam-weather/imports/nam-weather-display/nam-weather-display.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-112.73077" vertical-offset="10" max-vertical-offset="3060">
+          <caret line="173" column="42" selection-start-line="173" selection-start-column="42" selection-end-line="173" selection-end-column="42" />
           <folding />
         </state>
       </provider>
@@ -467,6 +475,14 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/nam-weather/imports/nam-weather-display/wwo_weather_codes.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-2.2307692" vertical-offset="248" max-vertical-offset="901">
+          <caret line="18" column="54" selection-start-line="18" selection-start-column="47" selection-end-line="18" selection-end-column="54" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/nam-weather/imports/google_api.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-0.0" vertical-offset="0" max-vertical-offset="102">
@@ -475,26 +491,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/nam-weather/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="561" max-vertical-offset="1054">
-          <caret line="33" column="25" selection-start-line="33" selection-start-column="25" selection-end-line="33" selection-end-column="25" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/nam-weather/imports/nam-weather-display/nam-weather.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="1989" max-vertical-offset="5355">
+        <state vertical-scroll-proportion="0.90132546" vertical-offset="1989" max-vertical-offset="5355">
           <caret line="153" column="62" selection-start-line="153" selection-start-column="62" selection-end-line="153" selection-end-column="62" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/nam-weather/imports/nam-weather-display/nam-weather-display.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.81776416" vertical-offset="2407" max-vertical-offset="3060">
-          <caret line="173" column="42" selection-start-line="173" selection-start-column="42" selection-end-line="173" selection-end-column="42" />
           <folding />
         </state>
       </provider>
