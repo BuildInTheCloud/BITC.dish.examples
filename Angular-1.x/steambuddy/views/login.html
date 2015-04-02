@@ -1,0 +1,36 @@
+<div ng-controller="LoginController">
+    <div layout="column" layout-fill layout-align="center center">
+        <div layout="row">
+            <h2 class="mega-title"><i class="fa fa-steam-square"></i> SteamBuddy</h2>
+        </div>
+        <div layout="row" layout-margin class="landing-item-container">
+            <div flex class="landing-item" layout="column" layout-align="center center">
+                <i class="fa fa-list-ul"></i><br><br>
+                <label>View your Stats</label>
+            </div>
+            <div flex class="landing-item" layout="column" layout-align="center center">
+                <i class="fa fa-users"></i><br><br>
+                <label>Track your Friends</label>
+            </div>
+            <div flex class="landing-item" layout="column" layout-align="center center">
+                <i class="fa fa-gamepad"></i><br><br>
+                <label>Follow your Games</label>
+            </div>
+        </div>
+        <div layout="column" class="steam-signin" layout-align="center center">
+            <h1 class="mega-title">Get Started 'Steaming'...</h1><br>
+            <md-input-container>
+                <label style="color:#7F8989; font-size:3vh;">Steam Username</label>
+                <input ng-model="username" style="border-bottom: solid 1px #7F8989; width:30vw; color: rgb(255, 255, 255); font-size:3vh;">
+            </md-input-container>
+            <md-button class="md-raised md-accent" style="height:6vh; width:100%;">
+                <div style="font-weight:bold; margin-top:0.7vh; font-size:2vh;">
+                    <i class="fa fa-steam-square"></i>
+                    <strong>Full Steam Ahead!</strong>
+                </div>
+            </md-button>
+            <br><br>
+            <a href="http://steampowered.com" class="copyright">Powered by Steam</a>
+        </div>
+    </div>
+</div>
